@@ -1,0 +1,1331 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f3eee5;
+    color: #111;
+    font-family: "DM Sans", sans-serif;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.tiny {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    background: #111;
+
+    color: #f5f0e8;
+}
+
+.intro-top,
+.intro-bottom {
+    position: absolute;
+
+    left: 35px;
+    right: 35px;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+
+    z-index: 10;
+}
+
+.intro-top {
+    top: 25px;
+}
+
+.intro-bottom {
+    bottom: 25px;
+}
+
+
+/* image fragments */
+
+.archive-grid {
+    position: absolute;
+    inset: 0;
+
+    opacity: .35;
+
+    filter: grayscale(.2);
+}
+
+.archive-photo {
+    position: absolute;
+
+    overflow: hidden;
+
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+
+    transition:
+        transform 1s ease,
+        opacity 1s ease;
+}
+
+.archive-photo img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.a1 {
+    width: 210px;
+    height: 280px;
+
+    left: 5%;
+    top: 12%;
+
+    transform: rotate(-8deg);
+}
+
+.a2 {
+    width: 190px;
+    height: 250px;
+
+    right: 8%;
+    top: 10%;
+
+    transform: rotate(7deg);
+}
+
+.a3 {
+    width: 250px;
+    height: 330px;
+
+    left: 10%;
+    bottom: 8%;
+
+    transform: rotate(5deg);
+}
+
+.a4 {
+    width: 180px;
+    height: 230px;
+
+    right: 12%;
+    bottom: 12%;
+
+    transform: rotate(-8deg);
+}
+
+.a5 {
+    width: 160px;
+    height: 210px;
+
+    left: 30%;
+    top: 7%;
+
+    transform: rotate(3deg);
+}
+
+.a6 {
+    width: 220px;
+    height: 280px;
+
+    right: 30%;
+    bottom: 5%;
+
+    transform: rotate(-4deg);
+}
+
+
+/* center */
+
+.intro-center {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    width: min(90%, 700px);
+
+    z-index: 20;
+}
+
+.intro-center h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(3rem, 8vw, 7rem);
+
+    line-height: .8;
+
+    font-weight: 400;
+
+    margin: 30px 0 40px;
+}
+
+.intro-center h1 span {
+    font-family: "DM Sans";
+
+    font-size: .35em;
+
+    margin: 0 10px;
+}
+
+
+/* scratch */
+
+.scratch-wrapper {
+    position: relative;
+
+    width: min(85vw, 390px);
+
+    aspect-ratio: 1;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #bdb4a5,
+            #716b62
+        );
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.5);
+}
+
+.scratch-message {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #7b1729;
+
+    color: #f5f0e8;
+}
+
+.scratch-message span {
+    font-size: 8px;
+    letter-spacing: 4px;
+}
+
+.scratch-message strong {
+    font-family: "Playfair Display", serif;
+
+    font-weight: 400;
+
+    font-size: clamp(3rem, 8vw, 5rem);
+
+    line-height: .8;
+
+    margin: 25px 0;
+}
+
+.scratch-message small {
+    font-family: "Playfair Display", serif;
+
+    font-style: italic;
+
+    font-size: 15px;
+}
+
+#scratchCanvas {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: crosshair;
+
+    z-index: 5;
+}
+
+.scratch-instruction {
+    margin-top: 22px;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+}
+
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal-screen {
+    height: 100vh;
+
+    background: #7b1729;
+
+    color: #f5f0e8;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.reveal-screen p {
+    font-size: 10px;
+    letter-spacing: 5px;
+}
+
+.reveal-screen h2 {
+    font-family: "Playfair Display", serif;
+
+    font-weight: 400;
+
+    font-size: clamp(4rem, 10vw, 10rem);
+
+    line-height: .8;
+
+    margin: 50px 0;
+}
+
+.reveal-screen button,
+.wedding button,
+.final button {
+
+    border: 0;
+
+    padding: 17px 25px;
+
+    background: #f5f0e8;
+
+    color: #111;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music {
+    position: fixed;
+
+    right: 20px;
+    top: 20px;
+
+    z-index: 100;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    background: rgba(0,0,0,.6);
+
+    backdrop-filter: blur(12px);
+
+    color: white;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    height: 100vh;
+
+    position: relative;
+
+    color: white;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+
+    background:
+        url("images/hero.jpg")
+        center / cover no-repeat;
+
+    transition: transform 1.5s ease;
+}
+
+.hero:hover .hero-image {
+    transform: scale(1.05);
+}
+
+.hero-shade {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent 20%,
+            rgba(0,0,0,.8)
+        );
+}
+
+.hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 8%;
+}
+
+.hero h1 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 10vw, 9rem);
+
+    font-weight: 400;
+
+    line-height: .75;
+
+    margin-top: 30px;
+
+    letter-spacing: -4px;
+}
+
+.hero h1 i {
+    font-family: "DM Sans";
+
+    font-style: normal;
+
+    font-size: .3em;
+}
+
+.hero-line {
+    font-family: "Playfair Display", serif;
+
+    font-size: 25px;
+
+    font-style: italic;
+
+    margin-top: 30px;
+}
+
+.hero-scroll {
+    position: absolute;
+
+    bottom: 25px;
+    right: 30px;
+
+    z-index: 3;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   TEEN SECTION
+===================================================== */
+
+.teen-section {
+    min-height: 100vh;
+
+    padding: 10% 8%;
+
+    display: grid;
+
+    grid-template-columns: .7fr .8fr 1.5fr;
+
+    gap: 5%;
+
+    align-items: center;
+}
+
+.section-number {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.teen-copy h2,
+.film-header h2,
+.details-copy h2,
+.date-section h2 {
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 7vw, 7rem);
+
+    line-height: .85;
+
+    font-weight: 400;
+
+    margin: 40px 0;
+}
+
+.micro {
+    line-height: 1.8;
+    opacity: .6;
+}
+
+.teen-images {
+    height: 650px;
+
+    position: relative;
+}
+
+.teen-image {
+    position: absolute;
+
+    width: 55%;
+
+    height: 65%;
+
+    overflow: hidden;
+
+    transition: transform .6s ease;
+}
+
+.teen-image img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.teen-image span {
+    position: absolute;
+
+    bottom: 15px;
+    left: 15px;
+
+    background: #f3eee5;
+
+    padding: 7px 10px;
+
+    font-size: 8px;
+    letter-spacing: 3px;
+}
+
+.teen-one {
+    left: 0;
+    top: 0;
+
+    transform: rotate(-5deg);
+}
+
+.teen-two {
+    right: 0;
+    bottom: 0;
+
+    transform: rotate(6deg);
+}
+
+.teen-image:hover {
+    transform: rotate(0) scale(1.05);
+    z-index: 5;
+}
+
+
+/* =====================================================
+   MEETING
+===================================================== */
+
+.meeting {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1.3fr .7fr;
+
+    background: #111;
+
+    color: #f3eee5;
+}
+
+.meeting-image {
+    overflow: hidden;
+}
+
+.meeting-image img {
+    height: 100vh;
+
+    object-fit: cover;
+
+    transition: transform 1s ease;
+}
+
+.meeting-image:hover img {
+    transform: scale(1.04);
+}
+
+.meeting-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 10%;
+}
+
+.meeting-copy h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 7vw, 7rem);
+
+    font-weight: 400;
+
+    line-height: .8;
+
+    margin: 50px 0;
+}
+
+.meeting-copy p:last-child {
+    font-family: "Playfair Display", serif;
+
+    font-size: 22px;
+
+    font-style: italic;
+
+    opacity: .7;
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline {
+    min-height: 100vh;
+
+    padding: 10% 8%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.timeline-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 50px;
+
+    width: min(600px, 90%);
+}
+
+.timeline-item span {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 7vw, 7rem);
+
+    color: #7b1729;
+}
+
+.timeline-item p {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.timeline-line {
+    height: 80px;
+
+    width: 1px;
+
+    background: #bbb;
+}
+
+.final-age span {
+    font-size: clamp(3rem, 6vw, 6rem);
+}
+
+
+/* =====================================================
+   FILM STRIP
+===================================================== */
+
+.film-section {
+    background: #e1d8c9;
+
+    padding: 10% 0;
+
+    overflow: hidden;
+}
+
+.film-header {
+    padding: 0 8%;
+}
+
+.film-strip {
+    display: flex;
+
+    gap: 25px;
+
+    margin-top: 80px;
+
+    width: max-content;
+
+    transform: rotate(-2deg);
+}
+
+.film-frame {
+    width: 360px;
+    height: 470px;
+
+    padding: 12px;
+
+    background: #111;
+
+    flex-shrink: 0;
+}
+
+.film-frame img {
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =====================================================
+   COUPLE
+===================================================== */
+
+.couple {
+    height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    color: white;
+}
+
+.couple > img {
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 1.5s ease;
+}
+
+.couple:hover > img {
+    transform: scale(1.04);
+}
+
+.couple-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.75)
+        );
+}
+
+.couple-text {
+    position: absolute;
+
+    left: 8%;
+    bottom: 10%;
+
+    z-index: 2;
+}
+
+.couple-text h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(4rem, 8vw, 8rem);
+
+    font-weight: 400;
+
+    line-height: .8;
+
+    margin-top: 40px;
+}
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
+
+.details {
+    min-height: 90vh;
+
+    padding: 10% 8%;
+
+    display: grid;
+
+    grid-template-columns: .8fr 1fr;
+
+    gap: 12%;
+
+    align-items: center;
+}
+
+.details-image {
+    transform: rotate(-3deg);
+}
+
+.details-image img {
+    aspect-ratio: 4/5;
+
+    object-fit: cover;
+}
+
+.details-copy p:last-child {
+    line-height: 2;
+
+    opacity: .65;
+
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+.date-section {
+    min-height: 90vh;
+
+    background: #7b1729;
+
+    color: #f3eee5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+.date-section h2 {
+    font-size: clamp(4rem, 10vw, 10rem);
+}
+
+.countdown {
+    display: flex;
+
+    gap: 60px;
+
+    margin-top: 70px;
+}
+
+.countdown div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.countdown strong {
+    font-size: 40px;
+
+    font-weight: 400;
+}
+
+.countdown small {
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: .6;
+}
+
+
+/* =====================================================
+   PARTY
+===================================================== */
+
+.party {
+    height: 100vh;
+
+    position: relative;
+
+    color: white;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: flex-end;
+}
+
+.party > img {
+    position: absolute;
+
+    inset: 0;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 1.2s ease;
+}
+
+.party:hover > img {
+    transform: scale(1.05);
+}
+
+.party-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.8)
+        );
+}
+
+.party-content {
+    position: relative;
+
+    z-index: 2;
+
+    padding: 8%;
+}
+
+.party-content h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(5rem, 9vw, 9rem);
+
+    line-height: .75;
+
+    font-weight: 400;
+
+    margin: 40px 0;
+}
+
+.party-content p:last-child {
+    font-family: "Playfair Display", serif;
+
+    font-size: 20px;
+
+    font-style: italic;
+}
+
+
+/* =====================================================
+   WEDDING
+===================================================== */
+
+.wedding {
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    background: #111;
+
+    color: #f3eee5;
+}
+
+.wedding-image {
+    overflow: hidden;
+}
+
+.wedding-image img {
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.wedding-copy {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 10%;
+}
+
+.wedding-copy h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(5rem, 8vw, 8rem);
+
+    line-height: .75;
+
+    font-weight: 400;
+
+    margin: 50px 0;
+}
+
+.event-details {
+    border-top: 1px solid #444;
+
+    margin-bottom: 40px;
+}
+
+.event-details div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #444;
+}
+
+.event-details span {
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    opacity: .5;
+}
+
+.event-details strong {
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final {
+    height: 100vh;
+
+    min-height: 700px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+}
+
+.final > img {
+    position: absolute;
+
+    inset: 0;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scale(1.05);
+
+    animation: finalZoom 15s ease infinite alternate;
+}
+
+@keyframes finalZoom {
+
+    from {
+        transform: scale(1.05);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
+
+}
+
+.final-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.2),
+            rgba(0,0,0,.75)
+        );
+}
+
+.final-content {
+    position: relative;
+
+    z-index: 5;
+}
+
+.final h2 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(6rem, 15vw, 15rem);
+
+    line-height: .7;
+
+    font-weight: 400;
+
+    margin: 50px 0 20px;
+}
+
+.fake {
+    font-family: "Playfair Display", serif;
+
+    font-style: italic;
+
+    font-size: 20px;
+}
+
+.final h3 {
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(3rem, 6vw, 6rem);
+
+    line-height: .8;
+
+    font-weight: 400;
+
+    margin-top: 35px;
+}
+
+.final button {
+    margin-top: 50px;
+}
+
+.footer {
+    position: absolute;
+
+    bottom: 25px;
+
+    z-index: 10;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+}
+
+
+/* =====================================================
+   FIREWORKS
+===================================================== */
+
+.firework {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0;
+
+    box-shadow:
+        0 -90px #ffd58a,
+        0 90px #ffd58a,
+        90px 0 #ffd58a,
+        -90px 0 #ffd58a,
+        64px 64px #ffd58a,
+        -64px -64px #ffd58a,
+        64px -64px #ffd58a,
+        -64px 64px #ffd58a;
+
+    animation: fireworks 3s infinite;
+}
+
+.fw1 {
+    left: 15%;
+    top: 25%;
+}
+
+.fw2 {
+    left: 75%;
+    top: 20%;
+
+    animation-delay: .8s;
+}
+
+.fw3 {
+    left: 50%;
+    top: 25%;
+
+    animation-delay: 1.5s;
+}
+
+.fw4 {
+    left: 85%;
+    top: 60%;
+
+    animation-delay: 2s;
+}
+
+@keyframes fireworks {
+
+    0% {
+        transform: scale(.1);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    60% {
+        transform: scale(1);
+        opacity: .8;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 700px) {
+
+    .intro-top,
+    .intro-bottom {
+        left: 15px;
+        right: 15px;
+    }
+
+    .archive-photo {
+        opacity: .22;
+    }
+
+    .a1 {
+        left: -10%;
+    }
+
+    .a2 {
+        right: -10%;
+    }
+
+    .a5,
+    .a6 {
+        display: none;
+    }
+
+    .intro-center h1 {
+        font-size: 3.5rem;
+    }
+
+    .teen-section,
+    .details {
+        grid-template-columns: 1fr;
+    }
+
+    .teen-images {
+        height: 500px;
+    }
+
+    .meeting,
+    .wedding {
+        grid-template-columns: 1fr;
+    }
+
+    .meeting-image {
+        height: 65vh;
+    }
+
+    .meeting-image img {
+        height: 100%;
+    }
+
+    .wedding-image {
+        height: 60vh;
+    }
+
+    .wedding-image img {
+        height: 100%;
+    }
+
+    .film-frame {
+        width: 260px;
+        height: 350px;
+    }
+
+    .countdown {
+        gap: 20px;
+    }
+
+    .countdown strong {
+        font-size: 28px;
+    }
+
+    .music span {
+        display: none;
+    }
+
+    .final h2 {
+        font-size: 6rem;
+    }
+
+}
