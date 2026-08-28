@@ -690,6 +690,26 @@ HERO
 
 }
 
+.story-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin: 20px 0;
+}
+
+.story-title span {
+  display: block;
+}
+
+.story-title span:last-child {
+  font-size: 2.35rem;
+  font-style: italic;
+}
+
+
 .hero-content{
 
     position:relative;
@@ -2223,7 +2243,7 @@ font-size:30px;
 
 @media(max-width:520px){
 
-    
+
 
 
 .photo-note{
