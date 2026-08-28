@@ -387,6 +387,7 @@ LETTER
     transition:
         opacity .9s ease,
         transform .9s ease;
+    margin-bottom: 80px;
 
 }
 .letter.visible{
@@ -446,9 +447,9 @@ LETTER
 
     text-transform:uppercase;
 
-    color:var(--brown2);
+    color:var(--white);
 
-    margin-bottom:22px;
+    margin-bottom:12px;
 
 }
 
@@ -1711,6 +1712,8 @@ ENGAGEMENT
     font-size:11px;
 
     color:#9b7c63;
+    
+    margin-bottom: 22px;
 
 }
 
