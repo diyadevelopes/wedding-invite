@@ -2,608 +2,1146 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>[BRIDE] × [GROOM]</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Our Story ♡</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
-        rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Caveat:wght@400;500;700&family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="style.css">
+
 </head>
 
 <body>
 
-<!-- =====================================================
-     SCRATCH INTRO
-===================================================== -->
+<!-- ===========================================================
+MUSIC
+=========================================================== -->
 
-<section class="intro" id="intro">
+<audio
+id="music"
+loop
+preload="auto">
 
-    <div class="intro-top">
-        <span>PRIVATE ARCHIVE</span>
-        <span>00 / 12</span>
-    </div>
+<source
+src="music/song.mp3"
+type="audio/mpeg">
 
-    <!-- Images underneath scratch -->
-    <div class="archive-grid">
+</audio>
 
-        <div class="archive-photo a1">
-            <img src="images/teen1.jpg">
-        </div>
+<!-- ===========================================================
+LANDING
+=========================================================== -->
 
-        <div class="archive-photo a2">
-            <img src="images/meeting.jpg">
-        </div>
+<section
+id="landing"
+class="landing">
 
-        <div class="archive-photo a3">
-            <img src="images/film1.jpg">
-        </div>
+<img
+class="landing-bg"
+src="images/bg1.jpg"
+alt="Background">
 
-        <div class="archive-photo a4">
-            <img src="images/polaroid1.jpg">
-        </div>
+<div class="landing-overlay"></div>
 
-        <div class="archive-photo a5">
-            <img src="images/teen2.jpg">
-        </div>
+<div
+id="landingContent"
+class="landing-content">
 
-        <div class="archive-photo a6">
-            <img src="images/film2.jpg">
-        </div>
+<div
+id="envelopeWrapper"
+class="envelope-wrapper">
 
-    </div>
+<img
+id="closedEnvelope"
+class="envelope closed"
+src="images/envelope-close.jpg"
+alt="Envelope">
 
+<img
+id="openedEnvelope"
+class="envelope opened"
+src="images/envelope-open.jpg"
+alt="Envelope Open">
 
-    <div class="intro-center">
+</div>
 
-        <p class="tiny">
-            A VERY IMPORTANT ANNOUNCEMENT
-        </p>
+<div class="landing-text">
 
-        <h1>
-            [BRIDE]
-            <span>×</span>
-            [GROOM]
-        </h1>
+<p class="handwritten">
 
-        <div class="scratch-wrapper">
+someone trusted you
+with this.
 
-            <div class="scratch-message">
+</p>
 
-                <span>THE SECRET</span>
+<h1>
 
-                <strong>
-                    THEY'RE<br>
-                    GETTING<br>
-                    MARRIED.
-                </strong>
+For
+Someone
+Special
 
-                <small>
-                    scratch it.
-                </small>
+</h1>
 
-            </div>
+<p class="instruction">
 
-            <canvas id="scratchCanvas"></canvas>
+open carefully ♡
 
-        </div>
+</p>
 
-        <p class="scratch-instruction">
-            ✦ SCRATCH TO UNLOCK ✦
-        </p>
+</div>
 
-    </div>
+</div>
 
+<div class="floating-particles">
 
-    <div class="intro-bottom">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
 
-        <span>EST. SOMEWHERE IN THEIR TEENS</span>
-
-        <span>2026</span>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     TRANSITION SCREEN
-===================================================== -->
-
-<section class="reveal-screen hidden" id="revealScreen">
-
-    <p>SO...</p>
-
-    <h2>
-        YOU FOUND US.
-    </h2>
-
-    <button id="enterButton">
-        OPEN THE STORY →
-    </button>
+</div>
 
 </section>
 
+<!-- ===========================================================
+LETTER
+=========================================================== -->
 
-<!-- =====================================================
-     MAIN WEBSITE
-===================================================== -->
+<section
+id="letter"
+class="letter hidden">
 
-<main id="main" class="hidden">
+<img
+class="letter-bg"
+src="images/bg3.png"
+alt="Letter">
 
-    <button class="music" id="musicButton">
-        ♫ <span>PLAY</span>
-    </button>
+<div class="letter-overlay">
 
-    <audio id="music">
-        <source src="music/song.mp3" type="audio/mpeg">
-    </audio>
+<div class="letter-card">
 
+<p class="archive">
 
-    <!-- =================================================
-         HERO
-    ================================================= -->
+PRIVATE ARCHIVE
 
-    <section class="hero">
+</p>
 
-        <div class="hero-image"></div>
+<h2>
 
-        <div class="hero-shade"></div>
+Every Story
 
-        <div class="hero-content">
+Deserves
 
-            <p class="tiny">
-                2026 · SAVE THE DATE
-            </p>
+<span>
 
-            <h1>
-                [BRIDE]
-                <i>×</i>
-                [GROOM]
-            </h1>
+To Be Remembered.
 
-            <p class="hero-line">
-                finally.
-            </p>
+</span>
 
-        </div>
+</h2>
 
-        <div class="hero-scroll">
-            ↓ SCROLL
-        </div>
+<div class="divider"></div>
 
-    </section>
+<p class="story-intro">
 
+You weren't just invited
+to an engagement.
 
-    <!-- =================================================
-         TEENAGE ERA
-    ================================================= -->
+<br><br>
 
-    <section class="teen-section">
+You're invited
+to the story
+that quietly unfolded
+between random conversations,
+inside jokes,
+late night calls,
+and choosing each other
+every single day.
 
-        <div class="section-number">
-            01
-        </div>
+</p>
 
-        <div class="teen-copy">
+<div class="signature">
 
-            <p class="tiny">
-                SOMEWHERE IN THEIR TEENS
-            </p>
+With love,
 
-            <h2>
-                Two teenagers.
-            </h2>
+<br>
 
-            <p class="micro">
-                Same place.<br>
-                Different lives.
-            </p>
+<span>
 
-        </div>
+Bride
+&
+Groom
 
+</span>
 
-        <div class="teen-images">
+</div>
 
-            <div class="teen-image teen-one">
-                <img src="images/teen1.jpg">
-                <span>BEFORE</span>
-            </div>
+<button
+id="beginStory"
+class="begin-button">
 
-            <div class="teen-image teen-two">
-                <img src="images/teen2.jpg">
-                <span>ALMOST</span>
-            </div>
+Begin The Story →
 
-        </div>
+</button>
 
-    </section>
+</div>
 
+</div>
 
-    <!-- =================================================
-         MEETING
-    ================================================= -->
+</section>
 
-    <section class="meeting">
+<!-- ===========================================================
+MAIN STORY
+=========================================================== -->
 
-        <div class="meeting-image">
+<main
+id="story"
+class="hidden">
+<!-- ===========================================================
+HERO
+=========================================================== -->
 
-            <img src="images/meeting.jpg">
+<section class="hero">
 
-        </div>
+    <img
+        src="images/bg4.png"
+        class="hero-background"
+        alt="">
 
-        <div class="meeting-copy">
+    <div class="hero-overlay"></div>
 
-            <p class="tiny">
-                AND THEN
-            </p>
+    <div class="hero-content">
 
-            <h2>
-                They met.
-            </h2>
+        <p class="hero-year">
 
-            <p>
-                That's it.<br>
-                That's the plot.
-            </p>
+            EST. 2017
 
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         TIMELINE
-    ================================================= -->
-
-    <section class="timeline">
-
-        <div class="timeline-item">
-
-            <span>15</span>
-
-            <p>
-                two strangers
-            </p>
-
-        </div>
-
-
-        <div class="timeline-line"></div>
-
-
-        <div class="timeline-item">
-
-            <span>16</span>
-
-            <p>
-                became friends
-            </p>
-
-        </div>
-
-
-        <div class="timeline-line"></div>
-
-
-        <div class="timeline-item">
-
-            <span>...</span>
-
-            <p>
-                grew up
-            </p>
-
-        </div>
-
-
-        <div class="timeline-line"></div>
-
-
-        <div class="timeline-item final-age">
-
-            <span>2026</span>
-
-            <p>
-                still together.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         FILM STRIP
-    ================================================= -->
-
-    <section class="film-section">
-
-        <div class="film-header">
-
-            <p class="tiny">
-                02 — THE YEARS IN BETWEEN
-            </p>
-
-            <h2>
-                A lot happened.
-            </h2>
-
-        </div>
-
-
-        <div class="film-strip">
-
-            <div class="film-frame">
-                <img src="images/film1.jpg">
-            </div>
-
-            <div class="film-frame">
-                <img src="images/polaroid1.jpg">
-            </div>
-
-            <div class="film-frame">
-                <img src="images/film2.jpg">
-            </div>
-
-            <div class="film-frame">
-                <img src="images/polaroid2.jpg">
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         FULL SCREEN COUPLE
-    ================================================= -->
-
-    <section class="couple">
-
-        <img src="images/film1.jpg">
-
-        <div class="couple-overlay"></div>
-
-        <div class="couple-text">
-
-            <p class="tiny">
-                SOMEHOW
-            </p>
-
-            <h2>
-                It was<br>
-                always you.
-            </h2>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         LITTLE DETAILS
-    ================================================= -->
-
-    <section class="details">
-
-        <div class="details-image">
-
-            <img src="images/details.jpg">
-
-        </div>
-
-        <div class="details-copy">
-
-            <p class="tiny">
-                03 — THE LITTLE THINGS
-            </p>
-
-            <h2>
-                The stuff<br>
-                nobody saw.
-            </h2>
-
-            <p>
-                The inside jokes.<br>
-                The long calls.<br>
-                The ordinary days.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         DATE
-    ================================================= -->
-
-    <section class="date-section">
-
-        <p class="tiny">
-            SO WE'RE MAKING IT OFFICIAL
         </p>
 
         <h2>
-            12 · 12 · 2026
+
+            Every
+            Love Story
+
+            <span>
+
+                Begins
+                Somewhere.
+
+            </span>
+
+        </h2>
+
+        <p class="hero-text">
+
+            Ours started with friendship,
+            grew through countless little
+            moments and somehow became
+            our favourite adventure.
+
+        </p>
+
+        <div class="scroll-indicator">
+
+            SCROLL ↓
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+CHAPTER ONE
+=========================================================== -->
+
+<section class="chapter chapter-left">
+
+    <div class="paper">
+
+        <span class="chapter-label">
+
+            CHAPTER 01
+
+        </span>
+
+        <div class="chapter-grid">
+
+            <div class="image-wrap">
+
+                <img
+                    src="images/groom-child.jpg"
+                    alt="">
+
+                <span class="photo-note">
+
+                    tiny troublemaker.
+
+                </span>
+
+            </div>
+
+            <div class="chapter-content">
+
+                <small>
+
+                    before "us"
+
+                </small>
+
+                <h2>
+
+                    Him.
+
+                </h2>
+
+                <p>
+
+                    Once upon a time,
+                    there was a little boy
+                    who had absolutely no idea
+                    that one day he'd become
+                    someone's favourite person.
+
+                </p>
+
+                <blockquote>
+
+                    "still thinks
+                    he's always right."
+
+                </blockquote>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+CHAPTER TWO
+=========================================================== -->
+
+<section class="chapter chapter-right">
+
+    <div class="paper reverse">
+
+        <span class="chapter-label">
+
+            CHAPTER 02
+
+        </span>
+
+        <div class="chapter-grid">
+
+            <div class="chapter-content">
+
+                <small>
+
+                    somewhere else...
+
+                </small>
+
+                <h2>
+
+                    Her.
+
+                </h2>
+
+                <p>
+
+                    Busy making memories,
+                    laughing a little louder
+                    than everyone else and
+                    unknowingly becoming
+                    someone's safest place.
+
+                </p>
+
+                <blockquote>
+
+                    "main character energy."
+
+                </blockquote>
+
+            </div>
+
+            <div class="image-wrap">
+
+                <img
+                    src="images/bride-child.jpg"
+                    alt="">
+
+                <span class="photo-note">
+
+                    sunshine in human form.
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+THEY MET
+=========================================================== -->
+
+<section class="meeting">
+
+    <div class="meeting-heading">
+
+        <span>
+
+            CHAPTER 03
+
+        </span>
+
+        <h2>
+
+            They
+            Met.
+
         </h2>
 
         <p>
-            Don't make other plans.
+
+            At first,
+            they were "just friends."
+
         </p>
 
+    </div>
 
-        <div class="countdown">
+    <div class="photo-wall">
+
+        <figure class="wall-photo one">
+
+            <img
+                src="images/meeting.jpg"
+                alt="">
+
+            <figcaption>
+
+                "just friends."
+
+            </figcaption>
+
+        </figure>
+
+        <figure class="wall-photo two">
+
+            <img
+                src="images/teen1.jpg"
+                alt="">
+
+            <figcaption>
+
+                everyone else knew.
+
+            </figcaption>
+
+        </figure>
+
+        <figure class="wall-photo three">
+
+            <img
+                src="images/teen2.jpg"
+                alt="">
+
+            <figcaption>
+
+                endless laughter.
+
+            </figcaption>
+
+        </figure>
+
+        <figure class="wall-photo four">
+
+            <img
+                src="images/love-story.jpeg"
+                alt="">
+
+            <figcaption>
+
+                and then...
+                it wasn't just friendship.
+
+            </figcaption>
+
+        </figure>
+
+    </div>
+
+    <div class="meeting-ending">
+
+        <p>
+
+            Somewhere between
+            random conversations,
+            bad jokes,
+            "reached home?"
+            texts
+            and countless memories,
+
+            <br><br>
+
+            they quietly became
+            each other's favourite person.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+FILM DIVIDER
+=========================================================== -->
+
+<section class="film-divider">
+
+    <img
+        src="images/film2.jpg"
+        alt="Film Roll">
+
+</section>
+
+<!-- ===========================================================
+CONTINUES IN PART 2
+=========================================================== -->
+
+<!-- ===========================================================
+CHAPTER 04
+GROWING TOGETHER
+=========================================================== -->
+
+<section class="growing">
+
+    <div class="growing-left">
+
+        <span class="chapter-label">
+
+            CHAPTER 04
+
+        </span>
+
+        <h2>
+
+            Growing
+            Together.
+
+        </h2>
+
+        <p class="intro">
+
+            Somewhere along the way...
+
+            they stopped being
+            two separate stories
+            and quietly became
+            one.
+
+        </p>
+
+        <div class="memory-list">
+
+            <div>✓ inside jokes</div>
+            <div>✓ random food dates</div>
+            <div>✓ "reached home?" texts</div>
+            <div>✓ laughing at nothing</div>
+            <div>✓ choosing each other</div>
+
+        </div>
+
+        <p class="hand-note">
+
+            still collecting memories.
+
+        </p>
+
+    </div>
+
+    <div class="growing-right">
+
+        <div class="editorial-frame">
+
+            <img
+                src="images/love-story2.jpeg"
+                alt="">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+LONG DISTANCE
+=========================================================== -->
+
+<section class="distance">
+
+    <img
+        src="images/bg2.jpg"
+        class="distance-paper"
+        alt="">
+
+    <div class="distance-overlay"></div>
+
+    <div class="distance-content">
+
+        <span>
+
+            CHAPTER 05
+
+        </span>
+
+        <h2>
+
+            Different
+            Cities.
+
+            <br>
+
+            Same
+            Home.
+
+        </h2>
+
+        <div class="distance-photo">
+
+            <img
+                src="images/longdistance.jpg"
+                alt="">
+
+        </div>
+
+        <div class="distance-stats">
 
             <div>
-                <strong id="days">00</strong>
-                <small>DAYS</small>
+
+                <h3>
+
+                    3
+
+                </h3>
+
+                <p>
+
+                    years
+
+                </p>
+
             </div>
 
             <div>
-                <strong id="hours">00</strong>
-                <small>HOURS</small>
+
+                <h3>
+
+                    ∞
+
+                </h3>
+
+                <p>
+
+                    calls
+
+                </p>
+
             </div>
 
             <div>
-                <strong id="minutes">00</strong>
-                <small>MINUTES</small>
-            </div>
 
-            <div>
-                <strong id="seconds">00</strong>
-                <small>SECONDS</small>
-            </div>
+                <h3>
 
-        </div>
+                    1
 
-    </section>
+                </h3>
 
+                <p>
 
-    <!-- =================================================
-         PARTY
-    ================================================= -->
+                    countdown
 
-    <section class="party">
-
-        <img src="images/party.jpg">
-
-        <div class="party-overlay"></div>
-
-        <div class="party-content">
-
-            <p class="tiny">
-                04 — THEN THINGS GOT LOUD
-            </p>
-
-            <h2>
-                Bring<br>
-                your chaos.
-            </h2>
-
-            <p>
-                We're getting married.<br>
-                Obviously we're throwing a party.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =================================================
-         WEDDING
-    ================================================= -->
-
-    <section class="wedding">
-
-        <div class="wedding-image">
-
-            <img src="images/wedding.jpg">
-
-        </div>
-
-        <div class="wedding-copy">
-
-            <p class="tiny">
-                05 — THE MAIN EVENT
-            </p>
-
-            <h2>
-                See you<br>
-                there.
-            </h2>
-
-            <div class="event-details">
-
-                <div>
-                    <span>DATE</span>
-                    <strong>12.12.26</strong>
-                </div>
-
-                <div>
-                    <span>TIME</span>
-                    <strong>7:00 PM</strong>
-                </div>
-
-                <div>
-                    <span>VENUE</span>
-                    <strong>[VENUE NAME]</strong>
-                </div>
+                </p>
 
             </div>
 
-            <button>
-                GET DIRECTIONS →
-            </button>
+        </div>
+
+        <blockquote>
+
+            Distance never
+            measured love.
+
+            It only measured
+            patience.
+
+        </blockquote>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+MEMORY BOX
+=========================================================== -->
+
+<section class="memory-box">
+
+    <div class="memory-heading">
+
+        <span>
+
+            CHAPTER 06
+
+        </span>
+
+        <h2>
+
+            A Box
+
+            Full Of
+
+            Memories.
+
+        </h2>
+
+    </div>
+
+    <div class="memory-image">
+
+        <img
+            src="images/details.jpg"
+            alt="">
+
+    </div>
+
+    <div class="memory-grid">
+
+        <div class="memory-card">
+
+            ☕ Coffee
+            Dates
 
         </div>
 
-    </section>
+        <div class="memory-card">
 
-
-    <!-- =================================================
-         FINAL FIRECRACKERS
-    ================================================= -->
-
-    <section class="final">
-
-        <img src="images/final.jpg">
-
-        <div class="final-overlay"></div>
-
-
-        <!-- CSS FIREWORKS -->
-
-        <div class="firework fw1"></div>
-        <div class="firework fw2"></div>
-        <div class="firework fw3"></div>
-        <div class="firework fw4"></div>
-
-
-        <div class="final-content">
-
-            <p class="tiny">
-                AND JUST LIKE THAT...
-            </p>
-
-            <h2>
-                THE END.
-            </h2>
-
-            <p class="fake">
-                jk.
-            </p>
-
-            <h3>
-                THE PARTY<br>
-                IS JUST STARTING.
-            </h3>
-
-            <button id="rsvpButton">
-                RSVP →
-            </button>
+            🎬 Movie
+            Nights
 
         </div>
 
+        <div class="memory-card">
 
-        <div class="footer">
-            [BRIDE] × [GROOM] · 2026
+            📸 Camera
+            Roll
+
         </div>
 
-    </section>
+        <div class="memory-card">
 
+            💌 Tiny
+            Notes
+
+        </div>
+
+        <div class="memory-card">
+
+            😂 Inside
+            Jokes
+
+        </div>
+
+        <div class="memory-card">
+
+            ❤️ Forever
+            Favorites
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+TIMELINE
+=========================================================== -->
+
+<section class="timeline">
+
+    <span>
+
+        CHAPTER 07
+
+    </span>
+
+    <h2>
+
+        The Timeline.
+
+    </h2>
+
+    <div class="timeline-line">
+
+        <div class="event">
+
+            <span>
+
+                2017
+
+            </span>
+
+            <h4>
+
+                Met
+
+            </h4>
+
+        </div>
+
+        <div class="event">
+
+            <span>
+
+                2018
+
+            </span>
+
+            <h4>
+
+                Friends
+
+            </h4>
+
+        </div>
+
+        <div class="event">
+
+            <span>
+
+                College
+
+            </span>
+
+            <h4>
+
+                Chaos.
+
+            </h4>
+
+        </div>
+
+        <div class="event">
+
+            <span>
+
+                2023
+
+            </span>
+
+            <h4>
+
+                Long Distance
+
+            </h4>
+
+        </div>
+
+        <div class="event active">
+
+            <span>
+
+                2026
+
+            </span>
+
+            <h4>
+
+                Engaged ♡
+
+            </h4>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+ENGAGEMENT
+=========================================================== -->
+
+<section class="engagement">
+
+    <div class="engagement-photo">
+
+        <img
+            src="images/love-story2.jpeg"
+            alt="">
+
+    </div>
+
+    <div class="engagement-content">
+
+        <span>
+
+            CHAPTER 08
+
+        </span>
+
+        <h2>
+
+            Plot Twist.
+
+        </h2>
+
+        <h3>
+
+            They're
+            Actually
+            Doing This.
+
+        </h3>
+
+        <p>
+
+            After all the
+            waiting,
+            growing,
+            laughing,
+            missing,
+            and loving...
+
+            this finally became
+            forever.
+
+        </p>
+
+        <div class="official-stamp">
+
+            OFFICIAL
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+CONTINUES IN FINAL PART
+=========================================================== -->
+
+<!-- ===========================================================
+WEDDING INVITATION
+=========================================================== -->
+
+<section class="invitation">
+
+    <img
+        src="images/bg5.png"
+        class="invite-bg"
+        alt="">
+
+    <div class="invite-overlay"></div>
+
+    <div class="invite-content">
+
+        <span class="chapter-label">
+
+            CHAPTER 09
+
+        </span>
+
+        <h2>
+
+            And Now...
+
+            <br>
+
+            We'd Love
+            You To
+            Be Part Of
+            The Next
+            Chapter.
+
+        </h2>
+
+        <div class="invite-details">
+
+            <div class="detail">
+
+                <small>
+
+                    DATE
+
+                </small>
+
+                <h3>
+
+                    12 December
+                    2026
+
+                </h3>
+
+            </div>
+
+            <div class="detail">
+
+                <small>
+
+                    TIME
+
+                </small>
+
+                <h3>
+
+                    7:00 PM
+
+                </h3>
+
+            </div>
+
+            <div class="detail">
+
+                <small>
+
+                    VENUE
+
+                </small>
+
+                <h3>
+
+                    The Grand Ballroom
+
+                </h3>
+
+            </div>
+
+        </div>
+
+        <button
+            class="invite-button">
+
+            Save The Date ♡
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ===========================================================
+FINAL
+=========================================================== -->
+
+<section class="final">
+
+    <img
+        src="images/bg5.png"
+        class="final-bg"
+        alt="">
+
+    <div class="final-dark"></div>
+
+    <div class="final-content">
+
+        <p class="thanks">
+
+            thank you
+            for being
+            part of
+            our story.
+
+        </p>
+
+        <h2>
+
+            Bride
+
+            <span>
+
+                &
+
+            </span>
+
+            Groom
+
+        </h2>
+
+        <p class="date">
+
+            12 • 12 • 2026
+
+        </p>
+
+        <div class="quote">
+
+            Every ending
+            is simply
+            another beginning.
+
+        </div>
+
+        <button
+            class="rsvp-button">
+
+            RSVP →
+
+        </button>
+
+    </div>
+
+    <div class="footer">
+
+        <span>
+
+            MADE WITH LOVE
+
+        </span>
+
+        <span>
+
+            ♡
+
+        </span>
+
+        <span>
+
+            SEE YOU SOON
+
+        </span>
+
+    </div>
+
+</section>
 
 </main>
-
 
 <script src="script.js"></script>
 
 </body>
+
 </html>

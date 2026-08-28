@@ -1,368 +1,742 @@
-/* =====================================================
-   SCRATCH REVEAL
-===================================================== */
+/* ===========================================================
+   OUR STORY
+   JAVASCRIPT
+=========================================================== */
 
-const canvas = document.getElementById("scratchCanvas");
-const ctx = canvas.getContext("2d");
+document.addEventListener("DOMContentLoaded", () => {
 
-const intro = document.getElementById("intro");
-const revealScreen = document.getElementById("revealScreen");
-const main = document.getElementById("main");
+    /* =========================================================
+       ELEMENTS
+    ========================================================= */
 
-let scratching = false;
-let scratches = 0;
-let revealed = false;
+    const music = document.getElementById("music");
+
+    const landing = document.getElementById("landing");
+    const landingContent = document.getElementById("landingContent");
+
+    const envelopeWrapper =
+        document.getElementById("envelopeWrapper");
+
+    const letter =
+        document.getElementById("letter");
+
+    const beginStory =
+        document.getElementById("beginStory");
+
+    const story =
+        document.getElementById("story");
+
+    const inviteButton =
+        document.querySelector(".invite-button");
+
+    const rsvpButton =
+        document.querySelector(".rsvp-button");
 
 
-function resizeCanvas() {
+    /* =========================================================
+       MUSIC
+    ========================================================= */
 
-    const rect = canvas.getBoundingClientRect();
+    let musicStarted = false;
 
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    function startMusic() {
 
-    ctx.globalCompositeOperation = "source-over";
+        if (!music || musicStarted) return;
 
-    /*
-        Metallic scratch texture
-    */
+        music.volume = 0.45;
 
-    const gradient =
-        ctx.createLinearGradient(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
+        const playPromise = music.play();
 
-    gradient.addColorStop(0, "#d1c9bc");
-    gradient.addColorStop(.5, "#81796e");
-    gradient.addColorStop(1, "#c7beb1");
+        if (playPromise !== undefined) {
 
-    ctx.fillStyle = gradient;
+            playPromise
+                .then(() => {
+                    musicStarted = true;
+                })
+                .catch(() => {
+                    /*
+                     Browser autoplay protection may prevent
+                     playback until the user interacts.
+                    */
+                });
 
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+        }
 
-    /*
-        tiny visual texture
-    */
-
-    ctx.fillStyle = "rgba(255,255,255,.15)";
-
-    for(let i = 0; i < 300; i++) {
-
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-
-        ctx.fillRect(x, y, 1, 1);
     }
 
-    ctx.globalCompositeOperation =
-        "destination-out";
-}
 
+    /* =========================================================
+       ENVELOPE OPEN
+    ========================================================= */
 
-resizeCanvas();
+    if (envelopeWrapper) {
 
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
+        envelopeWrapper.addEventListener("click", () => {
 
+            /*
+             Prevent clicking the envelope multiple times.
+            */
 
-function scratch(x, y) {
+            if (envelopeWrapper.classList.contains("open")) {
+                return;
+            }
 
-    if(revealed) return;
+            envelopeWrapper.classList.add("open");
 
-    ctx.beginPath();
+            startMusic();
 
-    ctx.arc(
-        x,
-        y,
-        32,
-        0,
-        Math.PI * 2
-    );
-
-    ctx.fill();
-
-    scratches++;
-
-    /*
-        Reveal after enough movement.
-    */
-
-    if(scratches > 130) {
-
-        revealed = true;
-
-        intro.style.transition =
-            "opacity 1s ease";
-
-        intro.style.opacity = "0";
-
-        setTimeout(() => {
-
-            intro.classList.add("hidden");
-
-            revealScreen.classList.remove(
-                "hidden"
-            );
-
-        }, 1000);
-    }
-}
-
-
-/* mouse */
-
-canvas.addEventListener(
-    "mousedown",
-    () => scratching = true
-);
-
-canvas.addEventListener(
-    "mouseup",
-    () => scratching = false
-);
-
-canvas.addEventListener(
-    "mouseleave",
-    () => scratching = false
-);
-
-canvas.addEventListener(
-    "mousemove",
-    event => {
-
-        if(!scratching) return;
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-        scratch(
-            event.clientX - rect.left,
-            event.clientY - rect.top
-        );
-    }
-);
-
-
-/* touch */
-
-canvas.addEventListener(
-    "touchstart",
-    event => {
-
-        scratching = true;
-
-        event.preventDefault();
-
-    },
-    { passive:false }
-);
-
-canvas.addEventListener(
-    "touchend",
-    () => scratching = false
-);
-
-canvas.addEventListener(
-    "touchmove",
-    event => {
-
-        if(!scratching) return;
-
-        event.preventDefault();
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-        const touch =
-            event.touches[0];
-
-        scratch(
-            touch.clientX - rect.left,
-            touch.clientY - rect.top
-        );
-
-    },
-    { passive:false }
-);
-
-
-/* =====================================================
-   ENTER STORY
-===================================================== */
-
-document
-    .getElementById("enterButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            revealScreen.style.transition =
-                "opacity .8s ease";
-
-            revealScreen.style.opacity = "0";
+            /*
+             After the envelope opens, slightly fade the
+             landing content.
+            */
 
             setTimeout(() => {
 
-                revealScreen.classList.add(
-                    "hidden"
-                );
+                if (landingContent) {
+                    landingContent.classList.add("opened-state");
+                }
 
-                main.classList.remove(
-                    "hidden"
-                );
-
-                window.scrollTo(0,0);
-
-            },800);
-
-        }
-    );
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-const music =
-    document.getElementById("music");
-
-const musicButton =
-    document.getElementById("musicButton");
-
-let playing = false;
-
-
-musicButton.addEventListener(
-    "click",
-    () => {
-
-        if(!playing) {
-
-            music.play();
-
-            playing = true;
-
-            musicButton.innerHTML =
-                "♫ <span>PAUSE</span>";
-
-        } else {
-
-            music.pause();
-
-            playing = false;
-
-            musicButton.innerHTML =
-                "♫ <span>PLAY</span>";
-        }
-
-    }
-);
-
-
-/* =====================================================
-   COUNTDOWN
-===================================================== */
-
-const weddingDate =
-    new Date(
-        "December 12, 2026 19:00:00"
-    ).getTime();
-
-
-function updateCountdown() {
-
-    const now =
-        new Date().getTime();
-
-    const difference =
-        weddingDate - now;
-
-
-    if(difference <= 0) return;
-
-
-    const days =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
-
-    const hours =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60) % 24
-        );
-
-    const minutes =
-        Math.floor(
-            difference /
-            (1000 * 60) % 60
-        );
-
-    const seconds =
-        Math.floor(
-            difference /
-            1000 % 60
-        );
-
-
-    document.getElementById("days")
-        .textContent =
-        String(days).padStart(2,"0");
-
-    document.getElementById("hours")
-        .textContent =
-        String(hours).padStart(2,"0");
-
-    document.getElementById("minutes")
-        .textContent =
-        String(minutes).padStart(2,"0");
-
-    document.getElementById("seconds")
-        .textContent =
-        String(seconds).padStart(2,"0");
-}
-
-
-updateCountdown();
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-/* =====================================================
-   RSVP
-===================================================== */
-
-document
-    .getElementById("rsvpButton")
-    .addEventListener(
-        "click",
-        () => {
+            }, 500);
 
             /*
-              Later we'll replace this with:
-              - Google Form
-              - WhatsApp
-              - Google RSVP page
-              - custom RSVP modal
+             Move to the letter automatically.
             */
 
-            alert(
-                "RSVP link coming soon ♡"
+            setTimeout(() => {
+
+                showLetter();
+
+            }, 1300);
+
+        });
+
+    }
+
+
+    /* =========================================================
+       SHOW LETTER
+    ========================================================= */
+
+    function showLetter() {
+
+        if (!landing || !letter) return;
+
+        /*
+         Hide landing
+        */
+
+        landing.classList.add("hidden");
+
+        /*
+         Show letter
+        */
+
+        letter.classList.remove("hidden");
+
+        /*
+         Start at the top of the letter
+        */
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+
+        /*
+         Small delay for browser rendering
+        */
+
+        setTimeout(() => {
+
+            letter.classList.add("visible");
+
+        }, 50);
+
+    }
+
+
+    /* =========================================================
+       BEGIN STORY
+    ========================================================= */
+
+    if (beginStory) {
+
+        beginStory.addEventListener("click", () => {
+
+            /*
+             Make absolutely sure music starts after
+             a real user interaction.
+            */
+
+            startMusic();
+
+            /*
+             Hide letter
+            */
+
+            letter.classList.add("hidden");
+
+            /*
+             Show main story
+            */
+
+            story.classList.remove("hidden");
+
+            /*
+             Reset scroll position
+            */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+            /*
+             Prepare scroll animations
+            */
+
+            initializeRevealAnimations();
+
+        });
+
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL ANIMATIONS
+    ========================================================= */
+
+    function initializeRevealAnimations() {
+
+        /*
+         Elements that should animate into view.
+        */
+
+        const revealElements = [
+
+            ".hero-content > *",
+            ".chapter",
+            ".meeting-heading",
+            ".wall-photo",
+            ".meeting-ending",
+            ".film-divider",
+            ".growing-left > *",
+            ".editorial-frame",
+            ".distance-content > *",
+            ".memory-heading",
+            ".memory-image",
+            ".memory-card",
+            ".timeline > *",
+            ".event",
+            ".engagement-photo",
+            ".engagement-content > *",
+            ".invite-content > *",
+            ".final-content > *"
+
+        ];
+
+        /*
+         Add fade-up class to each element.
+        */
+
+        revealElements.forEach(selector => {
+
+            document
+                .querySelectorAll(selector)
+                .forEach(element => {
+
+                    /*
+                     Avoid adding the animation to elements
+                     that are already prepared.
+                    */
+
+                    if (!element.classList.contains("fade-up")) {
+
+                        element.classList.add("fade-up");
+
+                    }
+
+                });
+
+        });
+
+
+        /*
+         Intersection Observer
+        */
+
+        const observer =
+            new IntersectionObserver(
+
+                (entries, observerInstance) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            /*
+                             Once revealed, stop observing.
+                            */
+
+                            observerInstance.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.15,
+                    rootMargin: "0px 0px -60px 0px"
+                }
+
+            );
+
+
+        /*
+         Observe all fade-up elements.
+        */
+
+        document
+            .querySelectorAll(".fade-up")
+            .forEach(element => {
+
+                observer.observe(element);
+
+            });
+
+    }
+
+
+    /* =========================================================
+       STAGGERED PHOTO WALL
+    ========================================================= */
+
+    function setupPhotoWall() {
+
+        const photos =
+            document.querySelectorAll(".wall-photo");
+
+        photos.forEach((photo, index) => {
+
+            photo.style.transitionDelay =
+                `${index * 120}ms`;
+
+        });
+
+    }
+
+    setupPhotoWall();
+
+
+    /* =========================================================
+       MEMORY CARD STAGGER
+    ========================================================= */
+
+    function setupMemoryCards() {
+
+        const cards =
+            document.querySelectorAll(".memory-card");
+
+        cards.forEach((card, index) => {
+
+            card.style.transitionDelay =
+                `${index * 100}ms`;
+
+        });
+
+    }
+
+    setupMemoryCards();
+
+
+    /* =========================================================
+       TIMELINE STAGGER
+    ========================================================= */
+
+    function setupTimeline() {
+
+        const events =
+            document.querySelectorAll(".timeline .event");
+
+        events.forEach((event, index) => {
+
+            event.style.transitionDelay =
+                `${index * 120}ms`;
+
+        });
+
+    }
+
+    setupTimeline();
+
+
+    /* =========================================================
+       PARALLAX EFFECT
+    ========================================================= */
+
+    function setupParallax() {
+
+        const parallaxImages = [
+
+            ".hero-background",
+            ".distance-paper",
+            ".invite-bg",
+            ".final-bg"
+
+        ];
+
+        /*
+         Only enable on devices with a mouse.
+        */
+
+        if (window.matchMedia("(hover: hover)").matches) {
+
+            window.addEventListener(
+                "scroll",
+                () => {
+
+                    const scrollY =
+                        window.scrollY;
+
+                    parallaxImages.forEach(selector => {
+
+                        document
+                            .querySelectorAll(selector)
+                            .forEach(image => {
+
+                                const rect =
+                                    image.parentElement.getBoundingClientRect();
+
+                                /*
+                                 Only calculate while the section
+                                 is near the viewport.
+                                */
+
+                                if (
+                                    rect.bottom > 0 &&
+                                    rect.top <
+                                    window.innerHeight
+                                ) {
+
+                                    const movement =
+                                        rect.top * 0.08;
+
+                                    image.style.transform =
+                                        `scale(1.08) translateY(${movement}px)`;
+
+                                }
+
+                            });
+
+                    });
+
+                },
+                { passive: true }
             );
 
         }
-    );
+
+    }
+
+    setupParallax();
+
+
+    /* =========================================================
+       SMOOTH INTERNAL NAVIGATION
+    ========================================================= */
+
+    function scrollToElement(element) {
+
+        if (!element) return;
+
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /* =========================================================
+       SAVE THE DATE BUTTON
+    ========================================================= */
+
+    if (inviteButton) {
+
+        inviteButton.addEventListener("click", () => {
+
+            /*
+             Create an .ics calendar file.
+            */
+
+            const eventTitle =
+                "Bride & Groom — Wedding";
+
+            const eventDate =
+                "20261212";
+
+            const startTime =
+                "190000";
+
+            /*
+             Wedding duration: 3 hours.
+            */
+
+            const endTime =
+                "220000";
+
+            const venue =
+                "The Grand Ballroom";
+
+            const description =
+                "Wedding celebration of Bride & Groom.";
+
+
+            const icsContent =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Our Story//Wedding//EN
+BEGIN:VEVENT
+UID:${Date.now()}@ourstory
+DTSTAMP:${getICSDate(new Date())}
+DTSTART:${eventDate}T${startTime}
+DTEND:${eventDate}T${endTime}
+SUMMARY:${eventTitle}
+LOCATION:${venue}
+DESCRIPTION:${description}
+END:VEVENT
+END:VCALENDAR`;
+
+
+            const blob =
+                new Blob(
+                    [icsContent],
+                    {
+                        type: "text/calendar;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement("a");
+
+            link.href = url;
+
+            link.download =
+                "wedding-save-the-date.ics";
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+
+            URL.revokeObjectURL(url);
+
+        });
+
+    }
+
+
+    /* =========================================================
+       RSVP BUTTON
+    ========================================================= */
+
+    if (rsvpButton) {
+
+        rsvpButton.addEventListener("click", () => {
+
+            /*
+             Replace this with your actual RSVP URL later.
+             
+             Example:
+             window.location.href =
+             "https://forms.google.com/....";
+            */
+
+            alert(
+                "RSVP details coming soon ♡"
+            );
+
+        });
+
+    }
+
+
+    /* =========================================================
+       ICS DATE FORMAT
+    ========================================================= */
+
+    function getICSDate(date) {
+
+        const year =
+            date.getUTCFullYear();
+
+        const month =
+            String(date.getUTCMonth() + 1)
+                .padStart(2, "0");
+
+        const day =
+            String(date.getUTCDate())
+                .padStart(2, "0");
+
+        const hours =
+            String(date.getUTCHours())
+                .padStart(2, "0");
+
+        const minutes =
+            String(date.getUTCMinutes())
+                .padStart(2, "0");
+
+        const seconds =
+            String(date.getUTCSeconds())
+                .padStart(2, "0");
+
+
+        return (
+            `${year}${month}${day}` +
+            `T${hours}${minutes}${seconds}Z`
+        );
+
+    }
+
+
+    /* =========================================================
+       SCROLL INDICATOR
+    ========================================================= */
+
+    const scrollIndicator =
+        document.querySelector(".scroll-indicator");
+
+    if (scrollIndicator) {
+
+        scrollIndicator.addEventListener(
+            "click",
+            () => {
+
+                const hero =
+                    document.querySelector(".hero");
+
+                if (!hero) return;
+
+                const nextSection =
+                    hero.nextElementSibling;
+
+                if (nextSection) {
+
+                    scrollToElement(
+                        nextSection
+                    );
+
+                }
+
+            }
+        );
+
+        scrollIndicator.style.cursor =
+            "pointer";
+
+    }
+
+
+    /* =========================================================
+       MUSIC VOLUME CONTROL
+    ========================================================= */
+
+    if (music) {
+
+        music.volume = 0.45;
+
+    }
+
+
+    /* =========================================================
+       KEYBOARD ACCESSIBILITY
+    ========================================================= */
+
+    if (envelopeWrapper) {
+
+        envelopeWrapper.setAttribute(
+            "role",
+            "button"
+        );
+
+        envelopeWrapper.setAttribute(
+            "tabindex",
+            "0"
+        );
+
+
+        envelopeWrapper.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    envelopeWrapper.click();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       PREVENT BROKEN IMAGE LAYOUT
+    ========================================================= */
+
+    document
+        .querySelectorAll("img")
+        .forEach(image => {
+
+            image.addEventListener(
+                "error",
+                () => {
+
+                    image.style.opacity = "0.35";
+
+                }
+            );
+
+        });
+
+
+    /* =========================================================
+       INITIAL STATE
+    ========================================================= */
+
+    /*
+     The HTML starts with:
+
+     #letter.hidden
+     #story.hidden
+
+     So only the landing page is visible initially.
+    */
+
+    if (letter) {
+        letter.classList.add("hidden");
+    }
+
+    if (story) {
+        story.classList.add("hidden");
+    }
+
+});
